@@ -1,0 +1,25 @@
+display_name: FaForever
+package_name: faforever
+maintainer:
+  name: kjxbyz
+  email: kjxbyz888@outlook.com
+priority: optional
+section: x11
+installed_size: 6604
+essential: false
+icon: logo/logo.png
+
+postinstall_scripts:
+  - echo "Installing FaForever"
+postuninstall_scripts:
+  - echo "FaForever installed"
+
+keywords:
+  - FaForever
+
+generic_name: FaForever
+
+categories:
+  - Utility
+
+startup_notify: true

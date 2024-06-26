@@ -1,0 +1,64 @@
+name: Test Linux Snapcraft
+
+on:
+  workflow_dispatch:
+
+# Declare default permissions as readonly.
+permissions: read-all
+
+jobs:
+  snap:
+    name: Create snap
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup LXD
+        uses: canonical/setup-lxd@v0.1.1
+        with:
+          channel: latest/stable
+
+      - name: Configure .env
+        run: |
+          echo "$ENV_KEY" | base64 --decode > .env
+        env:
+          ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
+
+      - name: Install yq
+        run: |
+          if ! command -v yq >/dev/null 2>&1; then
+            echo "yq not exists"
+            sudo snap install -y yq
+          fi
+          yq --version
+
+      - name: Update snapcraft.yaml
+        run: |
+          rm -f snap/snapcraft-arm64.yaml
+          yq -i '.parts.faforever.build-environment[1].FLUTTER_VERSION = "3.19.6"' snap/snapcraft.yaml
+
+      - name: Install snapcraft
+        run: |
+          sudo snap install snapcraft --classic
+
+      - name: Build snap
+        run: |
+          # https://snapcraft.io/docs/flutter-applications
+          version=$(yq '.version' pubspec.yaml)
+          snapcraft --output "faforever_"$version"_linux_x86_64.snap"
+
+      # Package the build.
+      - name: Copy build for snap
+        run: ls -la *.snap
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-snap-artifact
+          path: |
+            ./*.snap
+
+      - name: Clean up
+        if: ${{ always() }}
+        run: |
+          rm -f .env
+          snapcraft clean

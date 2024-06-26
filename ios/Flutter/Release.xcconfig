@@ -1,0 +1,2 @@
+#include? "Pods/Target Support Files/Pods-FaForever/Pods-FaForever.release.xcconfig"
+#include "Generated.xcconfig"

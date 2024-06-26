@@ -1,0 +1,20 @@
+display_name: FaForever
+icon: logo/logo.png
+summary: Your pictures, your signature.
+group: Application/Emulator
+vendor: kjxbyz
+packager: kjxbyz
+packagerEmail: kjxbyz888@outlook.com
+license: MIT
+url: https://github.com/cyf/faforever-flutter
+build_arch: x86_64
+
+keywords:
+  - FaForever
+
+generic_name: FaForever
+
+categories:
+  - Utility
+
+startup_notify: true
