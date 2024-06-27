@@ -31,6 +31,12 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Visual Studio Code related
+.classpath
+.project
+.settings/
+.vscode/*
+
 # Symbolication related
 app.*.symbols
 
@@ -48,6 +54,21 @@ app.*.map.json
 dist/
 /*.snap
 
+# Exceptions to the above rules.
+!**/ios/**/default.mode1v3
+!**/ios/**/default.mode2v3
+!**/ios/**/default.pbxuser
+!**/ios/**/default.perspectivev3
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.idea/codeStyles/
+!.idea/dictionaries/
+!.idea/runConfigurations/
+
 # local env files
 .env*.local
 .env
+
+# FVM Version Cache
+.fvm/
