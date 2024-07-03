@@ -18,20 +18,24 @@ jobs:
         with:
           platforms: arm64
 
-      - name: Show linux info
-        run: uname --all
-
       - name: Configure .env
         run: |
           echo "$ENV_KEY" | base64 --decode > .env
         env:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
+      - name: Install qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/grimbough/bioc-with-tinytex:devel-arm64
+          image: arm64v8/ubuntu:22.04
           options: |
-            --platform linux/arm64
+            --rm
+            --cap-add SYS_ADMIN
+            --device /dev/fuse
+            --security-opt apparmor:unconfined
             -v ${{ github.workspace }}:/work
             --workdir /work
           shell: bash
@@ -43,10 +47,16 @@ jobs:
 
             # Install dependencies for Linux
             echo "Install dependencies for Linux"
-            sudo apt update
+            apt update && apt install -y sudo
+            sudo apt install -y wget curl git unzip xz-utils zip libglu1-mesa file
             sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
             sudo apt install -y locate libfuse2
+
+            # Install appimagetool
+            echo "Install appimagetool"
             wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-aarch64.AppImage"
+            # https://github.com/AppImage/AppImageKit/issues/1056#issuecomment-643382397
+            sed -i 's|AI\x02|\x00\x00\x00|' appimagetool
             chmod +x appimagetool && mv appimagetool /usr/local/bin/
             
             # Setup Flutter
@@ -63,7 +73,7 @@ jobs:
             
             # Install flutter_distributor
             echo "Install flutter_distributor"
-            dart pub global activate flutter_distributor
+            dart pub global activate --source git https://github.com/kjxbyz/flutter_distributor --git-ref appimage --git-path packages/flutter_distributor
             
             # Flutter doctor
             echo "Flutter doctor -v"
@@ -104,20 +114,24 @@ jobs:
         with:
           platforms: arm64
 
-      - name: Show linux info
-        run: uname --all
-
       - name: Configure .env
         run: |
           echo "$ENV_KEY" | base64 --decode > .env
         env:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
+      - name: Install qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/grimbough/bioc-with-tinytex:devel-arm64
+          image: arm64v8/ubuntu:22.04
           options: |
-            --platform linux/arm64
+            --rm
+            --cap-add SYS_ADMIN
+            --device /dev/fuse
+            --security-opt apparmor:unconfined
             -v ${{ github.workspace }}:/work
             --workdir /work
           shell: bash
@@ -129,7 +143,8 @@ jobs:
 
             # Install dependencies for Linux
             echo "Install dependencies for Linux"
-            sudo apt update
+            apt update && apt install -y sudo
+            sudo apt install -y wget curl git unzip xz-utils zip libglu1-mesa file
             sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
 
             # Setup Flutter
@@ -188,20 +203,24 @@ jobs:
         with:
           platforms: arm64
 
-      - name: Show linux info
-        run: uname --all
-
       - name: Configure .env
         run: |
           echo "$ENV_KEY" | base64 --decode > .env
         env:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
+      - name: Install qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/grimbough/bioc-with-tinytex:devel-arm64
+          image: arm64v8/ubuntu:22.04
           options: |
-            --platform linux/arm64
+            --rm
+            --cap-add SYS_ADMIN
+            --device /dev/fuse
+            --security-opt apparmor:unconfined
             -v ${{ github.workspace }}:/work
             --workdir /work
           shell: bash
@@ -213,7 +232,8 @@ jobs:
 
             # Install dependencies for Linux
             echo "Install dependencies for Linux"
-            sudo apt update
+            apt update && apt install -y sudo
+            sudo apt install -y wget curl git unzip xz-utils zip libglu1-mesa file
             sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
             sudo apt install -y rpm patchelf
             
@@ -252,10 +272,6 @@ jobs:
             # Install yq
             if ! command -v yq >/dev/null 2>&1; then
               echo "yq not exists"
-              if ! command -v wget >/dev/null 2>&1; then
-                echo "wget not exists"
-                sudo apt install -y wget
-              fi
               wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq &&\
               chmod +x /usr/bin/yq
             fi
@@ -297,20 +313,24 @@ jobs:
         with:
           platforms: arm64
 
-      - name: Show linux info
-        run: uname --all
-
       - name: Configure .env
         run: |
           echo "$ENV_KEY" | base64 --decode > .env
         env:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
+      - name: Install qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/grimbough/bioc-with-tinytex:devel-arm64
+          image: arm64v8/ubuntu:22.04
           options: |
-            --platform linux/arm64
+            --rm
+            --cap-add SYS_ADMIN
+            --device /dev/fuse
+            --security-opt apparmor:unconfined
             -v ${{ github.workspace }}:/work
             --workdir /work
           shell: bash
@@ -322,7 +342,8 @@ jobs:
 
             # Install dependencies for Linux
             echo "Install dependencies for Linux"
-            sudo apt update
+            apt update && apt install -y sudo
+            sudo apt install -y wget curl git unzip xz-utils zip libglu1-mesa file
             sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
             sudo apt install -y p7zip-full p7zip-rar
 
@@ -382,20 +403,24 @@ jobs:
         with:
           platforms: arm64
 
-      - name: Show linux info
-        run: uname --all
-
       - name: Configure .env
         run: |
           echo "$ENV_KEY" | base64 --decode > .env
         env:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
+      - name: Install qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/grimbough/bioc-with-tinytex:devel-arm64
+          image: arm64v8/ubuntu:22.04
           options: |
-            --platform linux/arm64
+            --rm
+            --cap-add SYS_ADMIN
+            --device /dev/fuse
+            --security-opt apparmor:unconfined
             -v ${{ github.workspace }}:/work
             --workdir /work
           shell: bash
@@ -407,7 +432,8 @@ jobs:
 
             # Install dependencies for Linux
             echo "Install dependencies for Linux"
-            sudo apt update
+            apt update && apt install -y sudo
+            sudo apt install -y wget curl git unzip xz-utils zip libglu1-mesa file
             sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
             sudo apt install -y p7zip-full p7zip-rar
 
@@ -438,10 +464,6 @@ jobs:
             # Install yq
             if ! command -v yq >/dev/null 2>&1; then
               echo "yq not exists"
-              if ! command -v wget >/dev/null 2>&1; then
-                echo "wget not exists"
-                sudo apt install -y wget
-              fi
               wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq &&\
               chmod +x /usr/bin/yq
             fi
