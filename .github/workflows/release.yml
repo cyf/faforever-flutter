@@ -715,7 +715,7 @@ jobs:
           rm -f FaForever-unsigned.pkg
           ls -la *.pkg
           RELEASE="$([[ "$ENV" == "staging" ]] && echo "$VERSION.pre" || echo "$VERSION")"
-          mv FaForever.pkg $GITHUB_WORKSPACE/FaForever_"$RELEASE".pkg
+          mv FaForever.pkg $GITHUB_WORKSPACE/FaForever_"$RELEASE"_macos_universal.pkg
         working-directory: build/macos/Build/Products/Release
         env:
           ENV: ${{ github.event.inputs.env }}
@@ -859,7 +859,7 @@ jobs:
         run: |
           ls -la *.pkg
           RELEASE="$([[ "$ENV" == "staging" ]] && echo "$VERSION.pre" || echo "$VERSION")"
-          cp FaForever.pkg $GITHUB_WORKSPACE/FaForeverAppStore_"$RELEASE".pkg
+          cp FaForever.pkg $GITHUB_WORKSPACE/FaForever_"$RELEASE"_macos_appstore_universal.pkg
         working-directory: build/macos/Build/Products/AppStore-Release
         env:
           ENV: ${{ github.event.inputs.env }}
