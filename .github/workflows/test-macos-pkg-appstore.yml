@@ -132,7 +132,7 @@ jobs:
         run: |
           echo "$VERSION"
           ls -la *.pkg
-          mv FaForever.pkg FaForeverAppStore_"$VERSION".pkg
+          mv FaForever.pkg FaForever_"$VERSION"_macos_appstore_universal.pkg
           ls -la *.pkg
         working-directory: build/macos/Build/Products/AppStore-Release
         env:
