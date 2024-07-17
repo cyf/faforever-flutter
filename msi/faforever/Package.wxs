@@ -1,0 +1,49 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="FaForever" Manufacturer="INSCO LLC" Version="1.0.0.0" UpgradeCode="9e9a6c86-498b-45a3-962a-a8023e749b4a">
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <!-- Set an icon for Windows Settings > Apps -->
+    <Property Id="ARPPRODUCTICON" Value="FaForever.exe" />
+
+    <!-- Block 64-bit Win8/WinServer2012 (or earlier) and all 32-bit from installing -->
+    <Launch Message="FaForever only supports 64-bit Windows 10/11!" Condition="Installed OR VersionNT64 >= 603"/>
+
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature
+        Id="Main"
+        Title="FaForever"
+        Description="A third-party music player that replaces Synology DS Audio client."
+        AllowAbsent="no"
+        AllowAdvertise="no">
+      <!-- Flutter output -->
+      <ComponentGroupRef Id="BaseComponents" />
+      <ComponentGroupRef Id="DataComponents" />
+      <ComponentGroupRef Id="FlutterAssetComponents" />
+      <ComponentGroupRef Id="FlutterFontComponents" />
+      <ComponentGroupRef Id="FlutterLogoComponents" />
+      <ComponentGroupRef Id="FlutterPackageComponents" />
+      <ComponentGroupRef Id="ShaderComponents" />
+    </Feature>
+    <Feature
+        Id="VCredist"
+        Title="Visual C++ Redistributable Libraries"
+        Description="Libraries that FaForever uses. You may not need this if you already have vc_redist installed. You should install these if you're unsure of what this means."
+        AllowAbsent="yes"
+        AllowAdvertise="no">
+      <!-- Visual C++ Redustributable libraries -->
+      <ComponentGroupRef Id="VCredist" />
+    </Feature>
+    <!-- -->
+    <Feature
+      Id="Shortcut"
+      Title="FaForever"
+      Description="A third-party music player that replaces Synology DS Audio client."
+      AllowAbsent="yes"
+      AllowAdvertise="no"
+      Level="1">
+        <ComponentGroupRef Id="BaseComponents" />
+        <ComponentRef Id="DesktopShortcutComponent"/>
+    </Feature>
+  </Package>
+</Wix>
