@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/ying/workspace/cyf/faforever-flutter/macos/FaForeverMac.xcodeproj">
+      location = "self:FaForeverMac.xcodeproj">
    </FileRef>
 </Workspace>
