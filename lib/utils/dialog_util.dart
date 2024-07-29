@@ -296,15 +296,15 @@ class DialogUtil {
                 TextButton(
                   onPressed: onCancel ?? NavigatorUtil.pop,
                   style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
+                    textStyle: WidgetStateProperty.all(
                       const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                         height: 1.375,
                       ),
                     ),
-                    overlayColor: MaterialStateProperty.all(backgroundColor),
-                    shape: MaterialStateProperty.all(
+                    overlayColor: WidgetStateProperty.all(backgroundColor),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),
@@ -324,14 +324,14 @@ class DialogUtil {
               TextButton(
                 onPressed: onOK,
                 style: ButtonStyle(
-                  textStyle: MaterialStateProperty.all(
+                  textStyle: WidgetStateProperty.all(
                     const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       height: 1.375,
                     ),
                   ),
-                  shape: MaterialStateProperty.all(
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     ),
@@ -432,13 +432,13 @@ class DialogUtil {
                   ).nestedExpanded(),
                   IconButton(
                     style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
+                      padding: WidgetStateProperty.all(
                         const EdgeInsets.all(4),
                       ),
-                      minimumSize: MaterialStateProperty.all(Size.zero),
+                      minimumSize: WidgetStateProperty.all(Size.zero),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      elevation: MaterialStateProperty.all(0),
-                      backgroundColor: MaterialStateProperty.all(
+                      elevation: WidgetStateProperty.all(0),
+                      backgroundColor: WidgetStateProperty.all(
                         isDark ? placeholderTextColor : primaryGrayColor,
                       ),
                     ),

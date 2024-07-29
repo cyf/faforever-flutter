@@ -572,21 +572,21 @@ class _HomePageState extends State<HomePage> with WindowListener {
     return ElevatedButton(
       onPressed: _fileWrappers.isNotEmpty ? _preview : null,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           Colors.white,
         ),
-        foregroundColor: MaterialStateProperty.resolveWith((
-          Set<MaterialState> states,
+        foregroundColor: WidgetStateProperty.resolveWith((
+          Set<WidgetState> states,
         ) {
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(WidgetState.disabled)) {
             return secondaryBorderColor;
           }
           return primaryColor;
         }),
-        shape: MaterialStateProperty.resolveWith((
-          Set<MaterialState> states,
+        shape: WidgetStateProperty.resolveWith((
+          Set<WidgetState> states,
         ) {
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(WidgetState.disabled)) {
             return RoundedRectangleBorder(
               side: const BorderSide(color: secondaryBorderColor),
               borderRadius: BorderRadius.circular(10),
@@ -597,7 +597,7 @@ class _HomePageState extends State<HomePage> with WindowListener {
             borderRadius: BorderRadius.circular(10),
           );
         }),
-        elevation: MaterialStateProperty.all(0),
+        elevation: WidgetStateProperty.all(0),
       ),
       child: Text(
         t.homePage.preview,
@@ -616,23 +616,23 @@ class _HomePageState extends State<HomePage> with WindowListener {
     return ElevatedButton(
       onPressed: _fileWrappers.isNotEmpty ? _save : null,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith((
-          Set<MaterialState> states,
+        backgroundColor: WidgetStateProperty.resolveWith((
+          Set<WidgetState> states,
         ) {
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(WidgetState.disabled)) {
             return secondaryGrayColor;
           }
           return primaryColor;
         }),
-        foregroundColor: MaterialStateProperty.resolveWith((
-          Set<MaterialState> states,
+        foregroundColor: WidgetStateProperty.resolveWith((
+          Set<WidgetState> states,
         ) {
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(WidgetState.disabled)) {
             return placeholderTextColor;
           }
           return Colors.white;
         }),
-        elevation: MaterialStateProperty.all(0),
+        elevation: WidgetStateProperty.all(0),
       ),
       child: Text(
         t.homePage.save,
@@ -781,12 +781,12 @@ class _HomePageState extends State<HomePage> with WindowListener {
             actions: [
               TextButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(errorTextColor),
-                  elevation: MaterialStateProperty.all(0),
-                  minimumSize: MaterialStateProperty.all(Size.zero),
+                  backgroundColor: WidgetStateProperty.all(errorTextColor),
+                  elevation: WidgetStateProperty.all(0),
+                  minimumSize: WidgetStateProperty.all(Size.zero),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: MaterialStateProperty.all(EdgeInsets.zero),
-                  shape: MaterialStateProperty.all(
+                  padding: WidgetStateProperty.all(EdgeInsets.zero),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
@@ -810,12 +810,12 @@ class _HomePageState extends State<HomePage> with WindowListener {
               TextButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(primaryBackgroundColor),
-                  elevation: MaterialStateProperty.all(0),
-                  minimumSize: MaterialStateProperty.all(Size.zero),
+                      WidgetStateProperty.all(primaryBackgroundColor),
+                  elevation: WidgetStateProperty.all(0),
+                  minimumSize: WidgetStateProperty.all(Size.zero),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: MaterialStateProperty.all(EdgeInsets.zero),
-                  shape: MaterialStateProperty.all(
+                  padding: WidgetStateProperty.all(EdgeInsets.zero),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                       side: const BorderSide(color: primaryColor),
