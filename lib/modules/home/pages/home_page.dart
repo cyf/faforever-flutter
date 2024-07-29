@@ -1,20 +1,17 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:app_settings/app_settings.dart';
-import 'package:collection/collection.dart';
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:faforever/constants/constants.dart';
-import 'package:faforever/extensions/extensions.dart';
-import 'package:faforever/i18n/i18n.dart';
-import 'package:faforever/models/models.dart';
-import 'package:faforever/theme/colors.dart';
-import 'package:faforever/utils/utils.dart';
-import 'package:faforever/widgets/widgets.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
+// Package imports:
+import 'package:app_settings/app_settings.dart';
+import 'package:collection/collection.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +21,15 @@ import 'package:reorderables/reorderables.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:window_manager/window_manager.dart';
+
+// Project imports:
+import 'package:faforever/constants/constants.dart';
+import 'package:faforever/extensions/extensions.dart';
+import 'package:faforever/i18n/i18n.dart';
+import 'package:faforever/models/models.dart';
+import 'package:faforever/theme/colors.dart';
+import 'package:faforever/utils/utils.dart';
+import 'package:faforever/widgets/widgets.dart';
 
 /// colors
 const colors = <PGColor>[

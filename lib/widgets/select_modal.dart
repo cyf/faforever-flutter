@@ -1,9 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:faforever/extensions/extensions.dart';
 import 'package:faforever/i18n/i18n.dart';
 import 'package:faforever/models/models.dart';
 import 'package:faforever/theme/colors.dart';
 import 'package:faforever/utils/utils.dart';
-import 'package:flutter/material.dart';
 
 typedef VoidPGColorCallback = void Function(PGColor);
 

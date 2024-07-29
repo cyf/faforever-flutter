@@ -1,4 +1,7 @@
+// Dart imports:
 import 'dart:ui';
+
+// Project imports:
 import 'package:faforever/utils/string_util.dart';
 
 ///

@@ -1,5 +1,8 @@
-import 'package:faforever/app/navigator.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:faforever/app/navigator.dart';
 
 ///
 class NavigatorUtil {

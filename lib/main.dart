@@ -1,5 +1,19 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:logging/logging.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sentry_logging/sentry_logging.dart';
+import 'package:window_manager/window_manager.dart';
+
+// Project imports:
 import 'package:faforever/app/manager.dart';
 import 'package:faforever/app/navigator.dart';
 import 'package:faforever/constants/constants.dart';
@@ -8,14 +22,6 @@ import 'package:faforever/logger/logger.dart';
 import 'package:faforever/modules/home/home.dart';
 import 'package:faforever/theme/theme.dart';
 import 'package:faforever/utils/utils.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:logging/logging.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:sentry_logging/sentry_logging.dart';
-import 'package:window_manager/window_manager.dart';
 
 Future<void> reportErrorAndLog(FlutterErrorDetails details) async {
   printErrorLog(details.exception, stackTrace: details.stack);

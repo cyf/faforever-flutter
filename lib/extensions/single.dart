@@ -1,6 +1,9 @@
-import 'package:faforever/extensions/common.dart';
+// Flutter imports:
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:faforever/extensions/common.dart';
 
 // Commonly used 常用
 // Uncommonly used 不常用

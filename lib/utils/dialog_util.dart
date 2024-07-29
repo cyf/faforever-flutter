@@ -1,7 +1,18 @@
+// Dart imports:
 import 'dart:developer';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:collection/collection.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// Project imports:
 import 'package:faforever/app/navigator.dart';
 import 'package:faforever/constants/constants.dart';
 import 'package:faforever/extensions/extensions.dart';
@@ -10,11 +21,6 @@ import 'package:faforever/models/models.dart';
 import 'package:faforever/theme/colors.dart';
 import 'package:faforever/utils/utils.dart';
 import 'package:faforever/widgets/widgets.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 const double _buttonHeight = 54;
 

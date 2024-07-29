@@ -1,5 +1,8 @@
-import 'package:faforever/app/manager.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Project imports:
+import 'package:faforever/app/manager.dart';
 
 /// Checks if the current environment is a desktop environment.
 bool get isDesktop {

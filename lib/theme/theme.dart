@@ -1,5 +1,8 @@
-import 'package:faforever/theme/colors.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:faforever/theme/colors.dart';
 
 ///
 class AppTheme {
