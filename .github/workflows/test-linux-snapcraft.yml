@@ -8,7 +8,7 @@ permissions: read-all
 
 jobs:
   snap:
-    name: Create snap
+    name: Create linux snap
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +38,7 @@ jobs:
           yq -i '.parts.faforever.build-environment[1].FLUTTER_VERSION = "3.22.3"' snap/snapcraft.yaml
 
       - name: Install snapcraft
-        run: |
-          sudo snap install snapcraft --classic
+        run: sudo snap install snapcraft --classic
 
       - name: Build snap
         run: |

@@ -8,7 +8,7 @@ permissions: read-all
 
 jobs:
   snap_arm64:
-    name: Create snap
+    name: Create linux snap (aarch64)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,8 +25,7 @@ jobs:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
       - name: Install qemu-user-static
-        run: |
-          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
       # https://github.com/s3fs-fuse/s3fs-fuse/issues/647#issuecomment-637458150
       - uses: addnab/docker-run-action@v3

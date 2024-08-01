@@ -1636,9 +1636,6 @@ jobs:
         with:
           platforms: all
 
-      - name: Show linux info
-        run: uname --all
-
       - name: Configure .env
         run: |
           ENV_BASE64="$([[ "$ENV" == "staging" ]] && echo "$ENV_STG_BASE64" || echo "$ENV_PROD_BASE64")"
@@ -1747,7 +1744,6 @@ jobs:
         if: ${{ always() }}
         run: |
           rm -f .env
-
 
   linux_deb:
     name: Create linux deb
@@ -2797,15 +2793,6 @@ jobs:
         uses: canonical/setup-lxd@v0.1.1
         with:
           channel: latest/stable
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          flutter-version: '3.22.3'
-
-      - name: Flutter doctor -v
-        run: flutter doctor -v
 
       - name: Configure .env
         run: |

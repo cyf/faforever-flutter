@@ -1,4 +1,4 @@
-name: Test Linux Pacman (arm64)
+name: Test Linux AppImage (arm64)
 
 on:
   workflow_dispatch:
@@ -7,8 +7,8 @@ on:
 permissions: read-all
 
 jobs:
-  pacman:
-    name: Create linux pacman (aarch64)
+  appimage:
+    name: Create Linux appimage (aarch64)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +16,7 @@ jobs:
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: all
+          platforms: arm64
 
       - name: Configure .env
         run: |
@@ -25,9 +25,9 @@ jobs:
           ENV_KEY: ${{ secrets.ENV_STG_BASE64 }}
 
       - name: Install qemu-user-static
-        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
-      # https://github.com/s3fs-fuse/s3fs-fuse/issues/647#issuecomment-637458150
       - uses: addnab/docker-run-action@v3
         with:
           image: arm64v8/ubuntu:22.04
@@ -51,8 +51,14 @@ jobs:
             sudo apt install -y wget curl git unzip xz-utils zip libglu1-mesa file
             sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
             sudo apt install -y locate libfuse2
-            sudo apt install -y libarchive-tools
 
+            # Install appimagetool
+            echo "Install appimagetool"
+            wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-aarch64.AppImage"
+            # https://github.com/AppImage/AppImageKit/issues/1056#issuecomment-643382397
+            sed -i 's|AI\x02|\x00\x00\x00|' appimagetool
+            chmod +x appimagetool && mv appimagetool /usr/local/bin/
+            
             # Setup Flutter
             echo "Setup Flutter"
             bash ./install-flutter-ubuntu.sh
@@ -77,20 +83,20 @@ jobs:
             echo "Install flutter dependencies"
             flutter pub get
             
-            # Build Pacman
-            echo "Build Pacman"
-            flutter_distributor package --flutter-build-args "dart-define-from-file=.env,target-platform=linux-arm64" --platform linux --targets pacman --artifact-name '{{name}}_{{build_name}}+{{build_number}}_{{platform}}_aarch64.{{ext}}'
+            # Build AppImage
+            echo "Build AppImage"
+            flutter_distributor package --flutter-build-args "dart-define-from-file=.env,target-platform=linux-arm64" --platform linux --targets appimage --artifact-name '{{name}}_{{build_name}}+{{build_number}}_{{platform}}_aarch64.{{ext}}'
 
       # Package the build.
-      - name: Copy build for Pacman
+      - name: Copy build for AppImage
         run: ls -laR
         working-directory: dist
 
       - uses: actions/upload-artifact@v4
         with:
-          name: linux-pacman-arm64-artifact
+          name: linux-appimage-arm64-artifact
           path: |
-            ./dist/**/*.pacman
+            ./dist/**/*.AppImage
 
       - name: Clean up
         if: ${{ always() }}
