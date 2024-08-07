@@ -689,7 +689,7 @@ jobs:
 
       - name: Build DMG
         run: |
-          bash build-dmg.sh
+          bash scripts/build-dmg.sh
           RELEASE="$([[ "$ENV" == "staging" ]] && echo "$VERSION.pre" || echo "$VERSION")"
           mv FaForever.dmg FaForever_"$RELEASE"_macos_universal.dmg
         env:
@@ -1485,7 +1485,7 @@ jobs:
             
             # Setup Flutter
             echo "Setup Flutter"
-            bash ./install-flutter-ubuntu.sh
+            bash ./scripts/install-flutter-ubuntu.sh
             
             if [ -d "/home/linux-arm64/flutter" ]; then
               echo "🟩 ls -la"
@@ -1692,7 +1692,7 @@ jobs:
 
             # Setup Flutter
             echo "Setup Flutter"
-            bash ./install-flutter-ubuntu.sh
+            bash ./scripts/install-flutter-ubuntu.sh
             
             if [ -d "/home/linux-arm64/flutter" ]; then
               echo "🟩 ls -la"
@@ -1894,7 +1894,7 @@ jobs:
 
             # Setup Flutter
             echo "Setup Flutter"
-            bash ./install-flutter-ubuntu.sh
+            bash ./scripts/install-flutter-ubuntu.sh
             
             if [ -d "/home/linux-arm64/flutter" ]; then
               echo "🟩 ls -la"
@@ -2109,7 +2109,7 @@ jobs:
 
             # Setup Flutter
             echo "Setup Flutter"
-            bash ./install-flutter-ubuntu.sh
+            bash ./scripts/install-flutter-ubuntu.sh
             
             if [ -d "/home/linux-arm64/flutter" ]; then
               echo "🟩 ls -la"
@@ -2328,7 +2328,7 @@ jobs:
 
             # Setup Flutter
             echo "Setup Flutter"
-            bash ./install-flutter-ubuntu.sh
+            bash ./scripts/install-flutter-ubuntu.sh
             
             if [ -d "/home/linux-arm64/flutter" ]; then
               echo "🟩 ls -la"
@@ -2536,7 +2536,7 @@ jobs:
 
             # Setup Flutter
             echo "Setup Flutter"
-            bash ./install-flutter-ubuntu.sh
+            bash ./scripts/install-flutter-ubuntu.sh
 
             if [ -d "/home/linux-arm64/flutter" ]; then
               echo "🟩 ls -la"

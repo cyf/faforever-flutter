@@ -117,8 +117,7 @@ jobs:
           yq --version
 
       - name: Build DMG
-        run: |
-          bash build-dmg.sh
+        run: bash scripts/build-dmg.sh
 
       # Package the build.
       - name: Copy build for dmg
